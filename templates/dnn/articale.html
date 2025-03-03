@@ -1,0 +1,70 @@
+{% load static %}
+<!-- Breaking News Start -->
+<div class="container bg-dark d-none d-lg-block">
+        <div class="row align-items-center bg-dark">
+            <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <div class="bg-primary text-dark text-center" style="width: 170px;">Breaking News</div>
+                    <marquee width="100%" direction="left" height="20px">
+                        {% for brknews in bnews %}
+                        <a class="text-white p-1" style="text-size:14px;" href="/{{brknews.slug}}" ><samp class="badge badge-primary p-1">{{ brknews.schedule_date}} :-</samp> {{brknews.post_title}}! </a> 
+                        {% endfor %}
+                    </marquee>
+                    <div class="bg-primary text-dark text-center" style="width: 170px;">
+                        <a href="/all-news/breaking" class="text-dark text-center">View All News</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- Breaking News End -->
+ {% comment %} --------articale-start------ {% endcomment %}
+ <div class="container d-none d-lg-block">
+     <div class="row mt-110">
+         <div class="col-lg-6 mt-2">
+             <div class="row">
+                {% for article in Articale %}
+                 <div class="col-lg-4">
+                    <div class="d-flex bg-white">
+                        <div class="w-100 h-100 d-flex flex-column articalmrgn">
+                            <img class="img-fluid articaleimg" src="../upload/{{article.post_image}}" alt="{{article.post_cat|lower}}" >
+                            <a class="m-0 text-secondary font-weight-light text-justify" href="/{{article.slug}}">
+                                {{article.post_short_des|slice:":80"|safe}}</a>
+                        </div>
+                    </div>
+                   
+                 </div>
+                 {% endfor %}
+     </div>
+    </div>
+{% comment %} --------articale-start-end----- {% endcomment %}
+{% comment %} ------video-articales------ {% endcomment %}
+    <div class="col-lg-6 mt-2">
+        <div class="row">
+           {% for vidarticle in vidart %}
+            <div class="col-lg-4">
+               <div class="d-flex bg-white">
+                  
+                   <div class="w-100 h-100 d-flex flex-column articalmrgn">
+                    <img class="img-fluid articaleimg" src="https://img.youtube.com/vi/{{vidarticle.video_url}}/mqdefault.jpg" alt="{{vidarticle.post_cat|lower}}" >
+                        <a class="m-0 text-secondary font-weight-light" href="/video/{{vidarticle.slug}}">
+                            {{vidarticle.video_short_des|slice:":80"|safe}}</a>
+                   </div>
+               </div>
+               
+            </div>
+            {% endfor %}
+            <div class="col-lg-4">
+                <div class="d-flex bg-white">
+                    <div class="w-100 h-100 d-flex flex-column articalmrgn">
+                        <img class="img-fluid articaleimg" src="../upload/ads/articles-with-us.jpg" alt="articles with us" >
+                        <a class="m-0 text-secondary font-weight-bold text-center" href="/all-news/articles">
+                            More Article</a>
+                    </div>
+                </div>
+             </div>
+</div>
+</div>
+
+    </div></div>
+{% comment %} --------articale--end----- {% endcomment %}

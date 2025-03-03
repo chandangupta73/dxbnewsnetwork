@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+{% comment %} --------articale-start------ {% endcomment %}
+{% include "articale.html" %} 
+{% comment %} --------articale--end----- {% endcomment %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="position-relative mb-3 mt-1">
+            <h1>{{Blogdetails.post_title}}</h1>
+            {% if Blogdetails.post_image == '' %}
+            <img class="img-fluid w-100" src="../upload/blog/null.jpg" style="object-fit: cover;" alt="{{Blog.post_cat|lower}}">
+            {% else %}
+                <img class="img-fluid w-100" src="../upload/{{Blogdetails.post_image}}" style="object-fit: cover;" alt="{{Blog.post_cat|lower}}">
+            {% endif %}
+                <div class="bg-white border-top-0 mt-1">
+                    <p>Post by : {{ Blogdetails.user.first_name }} {{ Blogdetails.user.last_name }}</p>
+                    {{Blogdetails.post_des|safe}}
+                    <div class="d-flex align-items-center">
+                    <small ><i class="fas fa-calendar-alt"></i> {{Blogdetails.schedule_date|date}}</small>
+                    <small class="ml-3"> <i class="fas fa-clock"></i> {{ Blogdetails.schedule_date|time }}</small>
+                    <small class="ml-3"><i class="far fa-eye mr-2"></i>{{Blogdetails.post_status|add:Blogdetails.viewcounter}}</small> 
+                    </div>
+                        <p class="m-0">{{Blogdetails.post_tag|safe}}</p>
+                </div>
+            </div>
+{% comment %} -----------main-news--------- {% endcomment %}
+{% for mnews in mainnews %}
+<div class="position-relative mb-3 mt-3">
+    <h2><a href="/{{mnews.slug}}">{{mnews.post_title}}</a></h2>
+        <img class="img-fluid w-100" src="../upload/{{mnews.post_image}}" style="object-fit: cover;" alt="{{mnews.post_cat|lower}}">
+        <div class="bg-white border-top-0 mt-1">
+            <div class="d-flex align-items-center">
+                <small ><i class="fas fa-calendar-alt"></i> {{mnews.schedule_date|date}}</small>
+                <small class="ml-3"> <i class="fas fa-clock"></i> {{ mnews.schedule_date|time }}</small>
+                    <small class="ml-3"><i class="far fa-eye mr-2"></i>{{mnews.post_status|add:mnews.viewcounter}}</small>
+                    {% comment %} <small class="ml-3"><i class="far fa-comment mr-2"></i>123</small> {% endcomment %}
+            </div>
+                <p class="m-0">{{mnews.post_short_des|slice:":270"|safe}}...<a href="/{{mnews.slug}}">Read More.</a></p>
+        </div>
+    </div>
+    {% endfor %}
+{% comment %} -----------main-news--------- {% endcomment %}
+        <div class="col-lg-12 mb-3 ">
+                {% for adledb in adtop %}
+                <a href=""><img class="img-fluid w-100" src="../upload/{{adledb.ad_image}}" alt=""></a>
+                {% endfor %}
+                </div>
+        </div>
+        
+        <div class="col-lg-3"><!-- collam-right !-->
+            {% include "rightcollam.html" %} 
+        </div>
+    </div>
+</div>
+
+
+    <!-- Featured News Slider Start -->
+    <div class="container-fluid ">
+        <div class="container">
+            <div class="row  border-t border-b">
+                {% for Blog in BlogData %}
+            <div class="col-lg-3">
+                <div class="position-relative mb-3 mt-3">
+                    <p class="h50"><a class="h4 d-block mb-0 text-secondary text-uppercase font-weight-bold" href="/{{Blog.slug}}">{{Blog.post_title}}</a></p>
+                    <img class="img-fluid w-100 sliderimg" src="../upload/{{Blog.post_image}}">
+                    <div class="bg-white border border-top-0 p-4">
+                        <p  style="min-height:75px">
+                            {{Blog.post_short_des|slice:":270"|safe}}
+                        </p>
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="/{{Blog.slug}}">Read More</a>
+                            <a class="text-body" href="">
+                            <small><i class="fas fa-calendar-alt"></i> {{Blog.schedule_date|date}}</small>
+                        <small class="ml-3"> <i class="fas fa-clock"></i> {{ Blog.schedule_date|time }}</small>
+                    </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    <!-- Featured News Slider End -->
+    {% endblock %}  

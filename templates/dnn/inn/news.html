@@ -1,0 +1,150 @@
+{% load static %}
+<div class="container-fluid">
+    <div class="row my-3">
+        <div class="col-12">
+            {% for category, subcategories_data in grouped_postsdata.items %}
+
+            <!-- Category & Subcategories Slider -->
+            <div class="row py-1 align-items-center">
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <h4 style="font-weight: bold;" class="fw-bold">{{ category.cat_name }}</h4>
+                </div>
+
+                <div class="col-lg-10 col-md-9 col-sm-12">
+                    <div class="unique-slider-wrapper d-flex align-items-center">
+                        <ul class="unique-slider-content flex-nowrap overflow-x py-3"
+                            style="white-space: nowrap; scroll-behavior: smooth;">
+                            {% for subcat in subcategories_data.subcategories %}
+                            <li class="unique-slider-item d-inline-block" role="presentation">
+                                <a class="unique-subcat-btn" href="/{{ category.cat_slug }}/{{ subcat.subcat_slug }}">{{ subcat.subcat_name }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posts by Subcategories -->
+            {% for subcat in subcategories_data.subcategories|slice:":1" %}
+            <div class="row">
+                <!-- First Large Post -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card mt-3">
+                        {% for post in subcategories_data.posts|slice:":1" %}
+                        <a href="/{{ post.slug }}">
+                            <img class="w-100 img-fluid" src="../upload/{{ post.post_image }}" alt="Post Image">
+                        </a>
+                        <div style="--custom-bottom: 0px; --custom-right: 0px;">
+                            {% include 'inn/share.html' with posts=post %}
+                        </div>
+                        <div class="card-body news-card-body">
+                            <p class="text-muted">{{ post.schedule_date|date }} | {{ post.schedule_date|time }}</p>
+                            <h5 class="mt-1">
+                                <a href="/{{ post.slug }}" class="text-dark text-decoration-none fw-bold">
+                                    {{ post.post_title }}
+                                </a>
+                            </h5>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Grid for Remaining Posts (1:5) -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    {% for post in subcategories_data.posts|slice:"1:5" %}
+                    <div class="row mt-3 mr-1 news-box p-2 rounded-4">
+                        <div class="col-lg-3 col-4 p-1">
+                            <a href="/{{ post.slug }}">
+                                <img class="w-100 rounded" src="../upload/{{ post.post_image }}" alt="Post Image">
+                            </a>
+                            <div style="--custom-bottom: 0px; --custom-right: 0px;">
+                                {% include 'inn/share.html' with posts=post %}
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-8 ">
+                            <a href="/{{ post.slug }}" class="text-dark fw-bold text-decoration-none d-block text-card">
+                                {{ post.post_title|slice:":80"|safe }}
+                            </a>
+                            <small class="text-muted">{{ post.schedule_date|date }} | {{ post.schedule_date|time }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Grid for Remaining Posts (5:9) -->
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    {% for post in subcategories_data.posts|slice:"5:9" %}
+                    <div class="row mt-3 mr-1 news-box p-2 rounded-4">
+                        <div class="col-lg-3 col-4 p-1">
+                            <a href="/{{ post.slug }}">
+                                <img class="w-100 rounded" src="../upload/{{ post.post_image }}" alt="Post Image" >
+                            </a>
+                            <div style="--custom-bottom: 0px; --custom-right: 0px;">
+                                {% include 'inn/share.html' with posts=post %}
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-8 ">
+                            <a href="/{{ post.slug }}" class="text-dark fw-bold text-decoration-none d-block text-card">
+                                {{ post.post_title|slice:":80"|safe }}
+                            </a>
+                            <small class="text-muted">{{ post.schedule_date|date }} | {{ post.schedule_date|time }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            {% endfor %}
+
+            <!-- Real Estate Banner -->
+            {% if category.cat_slug == 'real-estate' %}
+            <div class="mt-4">
+                <a href="/voices-of-uae">
+                    <img class="img-fluid w-100 rounded shadow" src="{% static 'assets/img/voicesofuae.jpg' %}" alt="DXB News Network">
+                </a>
+            </div>
+            {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .unique-subcat-btn {
+        padding: 5px 15px;
+        border: none;
+        border-radius: 0px;
+        cursor: pointer;
+        background: none;
+        font-size: 16px;
+    
+    }
+    .unique-subcat-btn:hover {
+        color: #468fcb !important;
+        text-decoration: none;
+        
+    }
+    .text-card{
+        height: 46px; 
+        overflow: hidden;
+    }
+    .news-box {
+        background: #f9f9f9;
+        border-radius: 8px;
+        padding: 15px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .news-box:hover {
+        background: white;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15); 
+        transform: translateY(-3px);
+    }
+    .news-card-body{
+        height: 158px;
+        overflow: hidden;
+        padding: 20px !important;
+        background: #f9f9f9;
+    }
+</style>

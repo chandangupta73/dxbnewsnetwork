@@ -1,0 +1,154 @@
+{% load static %}
+    <!-- Topbar Start -->
+    <div class="headcontainer d-none d-lg-block border-b ">
+        <div class="row align-items-center ml-2 mr-2">
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-sm p-0">
+                    <ul class="navbar-nav ml-n2">
+                        {% comment %} <li class="nav-item border-right border-secondary">
+                            <span class="nav-link text-body small" id="datetime"></span>
+                        </li> {% endcomment %}
+                       
+                        <li class="nav-item border-right border-secondary">
+                            <a type="button" class="nav-link text-body small" data-toggle="modal" data-target="#RegForm">Reg Form</a>
+                        </li>
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small" href="/advertise-with-us">Advertise</a>
+                        </li>
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small" href="/contact-us">Contact</a>
+                        </li>
+                        
+                        {% comment %} <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small" href="/registration">Register</a>
+                        </li> {% endcomment %}
+                        
+                        {% if request.user.username %} 
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small" href="/user-dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body small" href="/logout">Logout</a>
+                        </li>
+                        
+                        {% else %} 
+                        <li class="nav-item ">
+                            <a class="nav-link text-body small" href="/login">Members/Sign Up</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                   
+                </nav>
+            </div>
+            <div class="col-lg-3 text-right d-none d-md-block">
+                <nav class="navbar navbar-expand-sm p-0">
+                    <ul class="navbar-nav ml-auto mr-n2">
+                        <li class="nav-item">
+                            <a class="nav-link text-body" href="https://twitter.com/dxbnewsnetwork" target="_blank">
+                            <small class="fab fa-twitter"></small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-body" href="https://www.facebook.com/profile.php?id=61553409659288" target="_blank">
+                            <small class="fab fa-facebook-f"></small>
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body" href="https://www.linkedin.com/company/dxb-news-network/" target="_blank"><small class="fab fa-linkedin-in"></small></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body" href="https://www.instagram.com/dxbnewsnetwork/" target="_blank"><small class="fab fa-instagram"></small></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body" href="https://www.youtube.com/channel/UCZHYpwn-EbdTFbJ3-qQx_Yg" target="_blank"><small class="fab fa-youtube"></small></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row align-items-center bg-white ml-2 mr-2">
+            <div class="col-lg-3 text-align-left"><span id="datetime" style="color:#c82333; mar"></span></div>
+            <div class="col-lg-6 center-align">
+                <a href="/" class="navbar-brand p-0 d-none d-lg-block">
+                    <img class="img-fluid" style="width:400px;" src="{% static 'assets/img/dxblogob.svg' %}" alt="DXB News Network breaking news UAE new lifestyle">
+                </a>
+            </div>
+            <div class="col-lg-3 text-align-right" style="text-align:right;">
+                <a type="button" class="badge badge-primary" data-toggle="modal" data-target="#ModalSubscribe">Subscribe</a>
+                <a href="/upcoming-events" class="badge badge-primary" >Events</a>
+                <a type="button" class="badge badge-primary" data-toggle="modal" data-target="#ModalSearch"> <i class="fa fa-search" aria-hidden="true"></i> Search</a> 
+            </div>
+           
+        </div>
+     {% comment %} --------nav-baar-----------   {% endcomment %}
+        <nav class="navbar navbar-expand-lg navbar-dark py-2 py-lg-0">
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    {% for link in Blogcat %}
+                    <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{link.cat_name}}</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                    {% for sublink in link.sub_category_set.all %}
+                    <a href="/{{link.cat_slug}}/{{sublink.subcat_slug}}" class="dropdown-item">{{sublink.subcat_name}}</a>
+                    {% endfor %}
+                            </div>
+                            </div>  
+                            {% endfor %}
+                            </div>
+                </div>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+{% comment %} -------end-nav-baar-----------   {% endcomment %}
+
+</div>
+<!-- Topbar End -->
+</div>
+<!-- Navbar End -->
+{% comment %} {% include "slider.html" %} {% endcomment %}
+
+<!-- Navbar Start Mob-->
+<div class="container p-0 d-block d-lg-none" >
+    
+    <div class="row p-1 ml-3 text-center"> 
+        <a class="text-body small" href="/contact-us">Contact</a>
+        {% if request.user.username %} 
+        <a class="nav-link text-body small" href="/user-dashboard">Dashboard</a>
+            <a class="nav-link text-body small" href="/logout">Logout</a>
+        {% else %} 
+            <a class="nav-link text-body small" href="/login">Members/Sign Up</a>
+        {% endif %}
+    
+        <a type="button" class="nav-link text-body small" data-toggle="modal" data-target="#RegForm">Reg Form</a>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark py-2 py-lg-0 px-lg-5 border-b border-t">
+                {% comment %} ----------------- {% endcomment %}
+               <a href="/" class="navbar-brand">
+                    <img class="img-fluid" src="{% static 'assets/img/dxblogob.svg' %}" alt="" width="100%">
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    </nav>
+        <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0 navbarmob">
+                            {% for link in Blogcat %}
+                            <div class="nav-item dropdown dropdounmob">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{link.cat_name}}</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                            {% for sublink in link.sub_category_set.all %}
+                            <a href="/{{link.cat_slug}}/{{sublink.subcat_slug}}" class="dropdown-item">{{sublink.subcat_name}}</a>
+    
+                            {% endfor %}
+                            </div>
+                            </div>  
+                            {% endfor %}
+                    </div>
+        </div>
+    </div>  
+    <!-- Navbar Start Mob-->
+
+

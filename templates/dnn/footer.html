@@ -1,0 +1,380 @@
+{% load static %}
+    
+<!-- reg-form-model -->
+<div class="modal fade" id="RegForm" tabindex="-1" role="dialog" aria-labelledby="RegFormTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content ">
+        <div class="container" style="padding:0px;">
+                  <div class="modal-body">
+                      {% if form.non_field_errors %}
+                      <small class="text-danger">{{ form.non_field_errors.as_ul}}</small>
+                      {% endif %}
+                      <h2 class="text-center">Reg Form</h2>
+                      <form action="{% url "Reg-Form" %}" method="post">
+                          {% csrf_token %}
+                          <div class="row">
+                              <div class="col-lg-6">
+                                  <div class="form-group pl-1">
+                                      <input type="text" name="person_name" class="form-control p-1" placeholder="Your Name" required="required">
+                                  </div>
+                              </div>
+                          <div class="col-lg-6">
+                          <div class="form-group pl-1">
+                              <input type="text" name="company_name" class="form-control p-1" placeholder="company name" required="required">
+                          </div>
+                      </div>
+                      <div class="col-lg-12">
+                          <div class="form-group pl-1">
+                              <textarea name="company_address" class="form-control p-1" id="company_address" cols="30" rows="3" placeholder="Company Address"></textarea>
+                          
+                          </div>
+                      </div>
+                      
+                      <div class="col-lg-6">
+                          <div class="form-group pl-1">
+                              <input type="text" name="phone" class="form-control p-1" placeholder="Your Mobile Number" required="required">
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="form-group  pl-1">
+                              <input type="email" name="email" class="form-control p-1" placeholder="Your Email" required="required">
+                          </div>
+                      </div>
+                      <div class="col-lg-6">    
+                          <div class="form-group pl-1">
+                              <input type="text" name="city" class="form-control p-1" placeholder="City" required="required">
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="form-group pl-1">
+                              <input type="text" name="country" class="form-control p-1" placeholder="Country" required="required">
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="form-group pl-1">
+                              <input type="text" name="designation" class="form-control p-1" placeholder="Designation" required="required">
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="form-group pl-1">
+                              <input type="text" name="enquiry_type" class="form-control p-1" placeholder="Enquiry type" required="required">
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="form-group pl-1">
+                           
+                              <select class="form-control" name="executive_names" required>
+                              <option valid="">Select Executive</option>
+                              <option valid="Baadshah">Baadshah </option>
+                              <option valid="Chenara">Chenara </option>
+                              <option valid="Muhammad">Muhammad </option>
+                              <option valid="Mohammad">Mohammad</option> 
+                              <option valid="Abdullah">Abdullah</option> 
+                              <option valid="Gurpreet">Gurpreet</option> 
+
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="form-group pl-1">
+                              <input type="text" name="walk_in" class="form-control p-1" placeholder=" walk in" required="required">
+                          </div>
+                      </div>
+                      <div class="col-lg-12">
+                          <div class="text-center">
+                              <span> <input type="button" value="Close" class="btn btn-dark" data-dismiss="modal" aria-label="Close"></span>
+                              <span><input type="submit" value="Submit" class="btn btn-secondary"> </span>
+                             
+                          </div>
+                      </div>
+                      
+                  </div>  
+                  </form>  
+                  </div>
+          
+               {% comment %} <div class="col-lg-4">
+                 <p class="pt-3 pr-3">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button></p> 
+                  <img src="{% static 'assets/img/newsletter.png' %}" alt="" style="width:200px;">
+              </div>{% endcomment %}
+      </div>
+     
+    </div>
+  </div>
+</div>
+<!-- end-Modal -->    
+<!-- Footer Start -->
+    <div class="container bg-dark pt-5 px-sm-3 px-md-5">
+        <div class="row py-4 mob-text-center">
+            <div class="col-lg-3 col-md-6 mb-1 ">
+                <h5 class="mb-4 text-white text-uppercase font-weight-bold">Get In Touch</h5>
+                <p class="font-weight-medium"><i class="fa fa-map-marker-alt mr-2"></i>3001E, 30 Floor, Aspin Commercial Tower, Sheikh Zayed Road, Dubai, UAE</p>
+                <p class="font-weight-medium"><i class="fa fa-phone-alt mr-2"></i>+971 52 602 2429</p>
+                <p class="font-weight-medium"><i class="fa fa-envelope mr-2"></i>info@dxbnewsnetwork.com</p>
+                
+            </div>
+            <div class="col-lg-3 col-md-6 mb-1">
+                <h5 class="mb-4 text-white text-uppercase font-weight-bold">Articles</h5>
+                <div class="mb-3">
+                    {% for article in Articale %}
+                  
+                    <div class="mb-2">
+                        <a class="text-body" href=""><small ><i class="fas fa-calendar-alt"></i> {{article.post_date|date}}</small>
+                            <small class="ml-3"> <i class="fas fa-clock"></i> {{ article.post_date|time }}</small></a>
+                    </div>
+
+                    <a class="small text-body text-uppercase font-weight-medium" href="/{{article.slug}}">{{article.post_title |slice:":100"}}</a>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-1">
+                <h5 class="mb-4 text-white text-uppercase font-weight-bold">Quick Link</h5>
+                
+                   <a href="/about-us" class="text-body font-weight-medium p-2 ltnimg">About us</a></br>
+                   {% comment %} <a href="#" class="text-body font-weight-medium p-2 ltnimg">Testimonial</a> {% endcomment %}
+                   <a href="/contact-us" class="text-body font-weight-medium p-2 ltnimg">Contact Us</a></br>
+                   <a href="/privacy-policy" class="text-body font-weight-medium p-2 ltnimg">Privacy Policy</a></br>
+                   <a href="/terms-and-conditions" class="text-body font-weight-medium p-2 ltnimg">Terms & Conditions</a></br>
+                   <a href="/disclaimer" class="text-body font-weight-medium p-2 ltnimg">Disclaimer</a></br>
+                   <a href="/sitemap" class="text-body font-weight-medium p-2 ltnimg">Sitemap</a>
+                
+            </div>
+            <div class="col-lg-3 col-md-6 mb-1">
+                <h5 class="mb-4 text-white text-uppercase font-weight-bold">LAUNCH OF DNN</h5>
+                <div class="mx-0">
+    <div class="bg-white border-b">
+    <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="175" frameborder="0" class="lazy entered loaded" data-src="https://www.youtube.com/embed/ANd5zEOqwTg?si=3jLpz6TwVJM8053h" data-ll-status="loaded" src="https://www.youtube.com/embed/ANd5zEOqwTg?si=3jLpz6TwVJM8053h"></iframe>
+
+    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4 px-sm-3 px-md-5" style="background:#c82333;">
+        <div class="text-center">
+            <h6 class="mt-1 mb-1 text-white text-uppercase font-weight-bold">Follow Us</h6>
+            <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="https://www.instagram.com/dxbnewsnetwork/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="https://www.facebook.com/profile.php?id=61553409659288" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-lg btn-secondary btn-lg-square" href="https://www.youtube.com/channel/UCZHYpwn-EbdTFbJ3-qQx_Yg"  target="_blank"><i class="fab fa-youtube"></i></a>
+            <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="https://www.linkedin.com/company/dxbnewsnetwork/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="https://twitter.com/dxbnewsnetwork" target="_blank"><i class="fab fa-twitter"></i></a>
+           
+        </div>
+        <p class="m-0 text-center" style="color:#fff">&copy; <a href="#" style="color:#fff">DNN</a>. All Rights Reserved. 
+		
+		<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+		</p>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- Modal-subscribe -->
+  <div class="modal fade" id="ModalSubscribe" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content ">
+          <div class="container" style="padding:0px;">
+          
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="{% static 'assets/img/newsletter.png' %}" alt="" style="width:200px;">
+                </div>
+                <div class="col-lg-8">
+                  <p class="pt-3 pr-3">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button></p>
+                      <div class="modal-body">
+                        {% if form.non_field_errors %}
+                        <small class="text-danger">{{ form.non_field_errors.as_ul}}</small>
+                        {% endif %}
+                        <h2 class="text-center">Subscribe</h2>
+                        <form action="{% url "UserSubscriber" %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group pl-4">
+                                <input type="text" name="fname" class="form-control p-4" placeholder="Your Name" required="required">
+                            </div>
+                            <div class="form-group  pl-4">
+                                <input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required">
+                            </div>
+                       
+                        <div class="text-center">
+                            <input type="submit" value="Submit" class="btn btn-secondary">
+                            </div>
+                        </form>
+                      </div>
+                </div>
+            </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <!-- end-subscribe-Modal -->
+
+  <!-- Modal-Search -->
+  <div class="modal fade" id="ModalSearch" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content ">
+          <div class="container" style="padding:0px;">
+            <div class="row">
+                {% comment %} <div class="col-lg-4">
+                    <img src="{% static 'assets/img/newsletter.png' %}" alt="" style="width:200px;">
+                </div> {% endcomment %}
+                <div class="col-lg-12">
+                  <p class="pt-3 pr-3">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button></p>
+                      <div class="modal-body">
+                        {% if form.non_field_errors %}
+                        <small class="text-danger">{{ form.non_field_errors.as_ul}}</small>
+                        {% endif %}
+                        <h2 class="text-center">Search</h2>
+                        <form action="{% url "search" %}" method="GET">
+                            <div class="form-group pl-4">
+                                <input type="text"  name="title" class="form-control p-4" placeholder="Search News" required="required">
+                            </div>
+                        <div class="text-center">
+                            <input type="submit" value="Submit" class="btn btn-secondary">
+                            </div>
+                        </form>
+                      </div>
+                </div>
+            </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <!-- end-search-Modal -->
+    <!-- JavaScript Libraries -->
+    <script type="text/javascript">
+      function PopUp(){
+          document.getElementById('ac-wrapper').style.display="none";
+      }
+      </script>
+      <style type="text/css">
+        #ac-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(18 18 18 / 50%);
+            z-index: 1001;
+        }
+        #popup {
+            width: 50%;
+            height: auto;
+            position:relative;
+            padding: 10px;
+            margin: 25px auto;  
+        }
+      </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'assets/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+      <script>
+        function displayDateTime() {
+          var options = { timeZone: 'Asia/Dubai', hour12: true, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+          var uaeDateTime = new Date().toLocaleString('en-US', options);
+          document.getElementById('datetime').innerHTML = uaeDateTime;
+        }
+        // Call the function initially to display date and time
+        window.onload = function() {
+          displayDateTime();
+        };
+    
+        // Update date and time every second (optional)
+        setInterval(displayDateTime, 1000);
+      </script>
+      <script>
+        CKEDITOR.replace('post_des');
+      </script>
+      <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+        
+        function showTab(n) {
+          // This function will display the specified tab of the form...
+          var x = document.getElementsByClassName("tab");
+          x[n].style.display = "block";
+          //... and fix the Previous/Next buttons:
+          if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+          } else {
+            document.getElementById("prevBtn").style.display = "inline";
+          }
+          if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+          } else {
+            document.getElementById("nextBtn").innerHTML = "Next";
+          }
+          //... and run a function that will display the correct step indicator:
+          fixStepIndicator(n)
+        }
+        
+        function nextPrev(n) {
+          // This function will figure out which tab to display
+          var x = document.getElementsByClassName("tab");
+          // Exit the function if any field in the current tab is invalid:
+          if (n == 1 && !validateForm()) return false;
+          // Hide the current tab:
+          x[currentTab].style.display = "none";
+          // Increase or decrease the current tab by 1:
+          currentTab = currentTab + n;
+          // if you have reached the end of the form...
+          if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+          }
+          // Otherwise, display the correct tab:
+          showTab(currentTab);
+        }
+        
+        function validateForm() {
+          // This function deals with validation of the form fields
+          var x, y, i, valid = true;
+          x = document.getElementsByClassName("tab");
+          y = x[currentTab].getElementsByTagName("input");
+          // A loop that checks every input field in the current tab:
+          for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+              // add an "invalid" class to the field:
+              y[i].className += " invalid";
+              // and set the current valid status to false
+              valid = false;
+            }
+          }
+          // If the valid status is true, mark the step as finished and valid:
+          if (valid) {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+          }
+          return valid; // return the valid status
+        }
+        
+        function fixStepIndicator(n) {
+          // This function removes the "active" class of all steps...
+          var i, x = document.getElementsByClassName("step");
+          for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+          }
+          //... and adds the "active" class on the current step:
+          x[n].className += " active";
+        }
+      
+      </script>
+</body>
+</html>

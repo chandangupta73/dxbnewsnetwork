@@ -1,0 +1,150 @@
+{% extends 'inn/base.html' %}
+{% block body %}
+{% load static %}
+
+<!-- Contact Start -->
+<div class="container-fluid bg-light py-5">
+    <div class="container dashboard-container">
+        <div class="row">
+            <div class="col-lg-3">
+                <!-- collam-left-menu !-->
+                {% include "inn/dbmenu.html" %} 
+                <!-- collam-left !-->
+            </div>
+            <div class="col-lg-9">
+                <div class="section-title mb-0">
+                    <h4 class="mt-4 text-uppercase font-weight-bold">Edit Post</h4>
+                </div>
+                <div class="news-post">
+                    <div class="mb-4">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>{{ message }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <form action="{% url 'update-post' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <input type="hidden" name="postId" value="{{ ed.id }}">
+                                <div class="form-group">
+                                    <select name="post_cat" required id="id_post_cat" class="form-control">
+                                        <option value="" selected>Select Category</option>
+                                        {% for category in categories %}
+                                        {% for subcategory in category.sub_category_set.all %}
+                                        <option value="{{ subcategory.id }}" {% if subcategory.id == ed.post_cat_id %} selected {% endif %}>
+                                            {{ category.cat_name }}/{{ subcategory.subcat_name }}
+                                        </option>
+                                        {% endfor %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="post_title" class="form-control p-4" placeholder="News Headline" required value="{{ ed.post_title }}" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="post_short_des" class="form-control p-4" placeholder="Short Description" required value="{{ ed.post_short_des }}" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea name="post_des" id="post_des" class="form-control" cols="30" rows="5">{{ ed.post_des }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="text-primary">Choose Image: Image should be 1280x700</label>
+                                    <input type="file" name="post_image" class="form-control" />
+                                    <div class="py-2">
+                                        <span><img src="../upload/{{ ed.post_image }}" alt="" width="50px"> /upload/{{ ed.post_image }}</span>
+                                    </div>
+                                    <input type="hidden" name="post_image" value="{{ ed.post_image }}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="text-primary">Enter # Tags Related to News</label>
+                                    <input name="post_tag" id="post_tag" class="form-control" placeholder="News Tags" value="{{ ed.post_tag }}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="checkbox" name="is_active" value="1" {% if ed.is_active %} checked {% endif %}>
+                                    <label class="vCheckboxLabel mr-2">Latest News</label>
+
+                                    <input type="checkbox" name="Head_Lines" value="1" {% if ed.Head_Lines %} checked {% endif %}>
+                                    <label class="vCheckboxLabel mr-2">Headlines</label>
+
+                                    <input type="checkbox" name="articles" value="1" {% if ed.articles %} checked {% endif %}>
+                                    <label class="vCheckboxLabel mr-2">Articles</label>
+
+                                    <input type="checkbox" name="trending" value="1" {% if ed.trending %} checked {% endif %}>
+                                    <label class="vCheckboxLabel mr-2">Trending</label>
+
+                                    <input type="checkbox" name="BreakingNews" value="1" {% if ed.BreakingNews %} checked {% endif %}>
+                                    <label class="vCheckboxLabel mr-2">Breaking News</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Current Scheduled Time:</label>
+                                    <input type="datetime-local" name="scheduled_datetime" id="scheduled_datetime" class="form-control"
+                                           value="{{ ed.schedule_date|date:'Y-m-d\TH:i' }}" required>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary font-weight-semi-bold px-4" style="height:50px;" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getsubcat() {
+        countryid = document.getElementById('country').value;
+        window.location = "/?country=" + countryid;
+    }
+</script>
+
+<style>
+    .dashboard-container {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        padding: 0px;
+    }
+
+    .news-post {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 20px 20px 30px 0px;
+        border-radius: 8px;
+    }
+
+    .submit-btn {
+        background: #478fca;
+        width: 100%;
+        color: #fff;
+    }
+</style>
+{% endblock %}

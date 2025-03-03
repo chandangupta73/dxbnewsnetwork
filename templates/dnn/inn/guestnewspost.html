@@ -1,0 +1,134 @@
+{% extends 'inn/base.html' %} 
+{% load static %} 
+{% block body %}
+
+<!-- Contact Start -->
+<div class="container-fluid bg-light py-5">
+    <div class="container dashboard-container">
+        <div class="row">
+            <div class="col-lg-3">
+                {% include "inn/dbmenu.html" %}
+            </div>
+            <div class="col-lg-9">
+                <div class="section-title mb-4">
+                    <h4 class="mt-4 text-uppercase font-weight-bold">News Post</h4>
+                </div>
+                <div class="news-post">
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>{{ message }}</strong>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form action="{% url 'guest-news-post' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Select Category</label>
+                            <select name="post_cat" id="id_post_cat" class="form-control" required>
+                                <option value="" selected>Select Category</option>
+                                {% for category in categories %}
+                                    {% for subcategory in category.sub_category_set.all %}
+                                        <option value="{{subcategory.id}}">{{category.cat_name}}/{{ subcategory.subcat_name }}</option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>News Headline</label>
+                            <input type="text" name="post_title" class="form-control" placeholder="Enter News Headline" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Short Description</label>
+                            <input type="text" name="post_short_des" class="form-control" placeholder="Enter Short Description" required>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <textarea name="post_des" id="post_des" class="form-control" cols="30" rows="5">Long Description</textarea>
+                            </div>
+                        </div> 
+                        
+                        <script>
+                            CKEDITOR.replace('post_des');
+                        </script>
+
+                        <div class="form-group">
+                            <label>Choose Image (1280x700)</label>
+                            <input type="file" name="post_image" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>News Tags</label>
+                            <input type="text" name="post_tag" class="form-control" placeholder="Enter #tags">
+                        </div>
+
+                        <div class="form-group">
+                            <label>News Categories</label><br>
+                            <input type="checkbox" name="is_active" value="1"> Latest News
+                            <input type="checkbox" name="Head_Lines" value="1"> Headlines
+                            <input type="checkbox" name="articles" value="1"> Articles
+                            <input type="checkbox" name="trending" value="1"> Trending
+                            <input type="checkbox" name="BreakingNews" value="1"> Breaking News
+                        </div>
+
+                        <div class="form-group">
+                            <input type="checkbox" name="upcoming_events" id="upcoming_events" value="1">
+                            <label for="upcoming_events">Upcoming Events</label>
+                            <div id="event_dates" style="display: none;">
+                                <label>Start Date</label>
+                                <input type="date" name="start_date" class="form-control">
+                                <label>End Date</label>
+                                <input type="date" name="end_date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>News Schedule</label>
+                            <input type="datetime-local" name="scheduled_datetime" id="scheduled_datetime" class="form-control">
+                        </div>
+                        <button class="submit-btn" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #upcoming_events:checked ~ #event_dates {
+        display: block;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let now = new Date();
+        let formattedDateTime = now.toISOString().slice(0, 16); 
+        document.getElementById("scheduled_datetime").value = formattedDateTime;
+    });
+</script>
+<!-- Contact End -->
+ <style>
+    .dashboard-container {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        padding: 0px;
+    }
+    .news-post{
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 20px 20px 30px 0px;
+        border-radius: 8px;
+    }
+    .submit-btn{
+        background: #478fca;
+        width: 100%;
+        color: #fff;
+    }
+ </style>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% load static %}  
+<div class="container">
+    <div class="col-lg-12">
+        <div class="head-title text-center border-b mb-1 mt-5">BRAND PARTNERS</div>
+    </div>
+       
+        <div class="owl-carousel news-carousel carousel-item-5 position-relative bgblue p-5 owl-dots" >
+            {% for bp in bplogo %}
+            <div class="position-relative overflow-hidden bplogo">
+                <a href="{{bp.url}}" style="color:#fff;" target="_blank">
+                <img class="img-fluid rad10" src="../upload/{{bp.Logo}}" alt="{{bp.name|lower}}" >
+                </a>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+

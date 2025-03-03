@@ -1,0 +1,60 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block body %}
+
+<div class="ml-2 mr-2">
+    {% include 'headertopads.html' %}
+
+    <!-- top news start -->
+    {% include 'topnews.html' %}
+    <!-- top news end -->
+
+    <!-- articls section start -->
+    {% include 'articale.html' %}
+    <!-- articls section end -->
+
+    <!--  featcher section Start -->
+    {% include 'featcher.html'%}
+    <!--  featcher End  -->
+
+    
+    <!-- Advertisment start -->
+    <div class="col-lg-12 mt-4 mb-4 text-center">
+        <p>Advertisment:</p>
+        {% for ads in adtop|slice:":1" %}
+        <a href="{{ ads.ad_url }}" target="_blank">
+            {% if ads.ad_type == 'stil' %}
+            <img style="height: 316px" class="img-fluid w-100" src="../upload/{{ ads.ad_image }}"
+                alt="{{ ads.ad_url }}" />
+            {% else %}
+            <video class="img-fluid w-100" style="height: 316px" autoplay loop muted>
+                <source src="../upload/{{ ads.ad_image }}" />
+            </video>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    <!-- Advertisment End -->
+
+
+    <!-- news start -->
+    {% include 'news.html' %}
+    <!-- news end -->
+
+
+    <!-- Must watch videos Start -->
+    {% include 'videonews.html'%}
+    <!-- Must watch videos End -->
+
+
+    <!--BRAND PARTNERS Start -->
+    {% include 'bp-logo.html' %}
+    <!--BRAND PARTNERS End -->
+
+
+    <!--LATESH INSTAGRAM POSTS End -->
+    {% include 'instapost.html' %}
+    <!--LATEST INSTAGRAM POSTS End -->
+</div>
+
+{% endblock %}

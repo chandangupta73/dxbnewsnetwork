@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="copyright" content="Markazia Solutions LLC-FZ. All rights reserved." />
+    <meta name="distribution" content="global" />
+    <meta name="twitter:site" content="@dxbnewsnetwork" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="https://www.dxbnewsnetwork.com/" />
+    <meta property="fb:pages" content="173638345826971" />
+    <meta property="og:site_name" content="Dxb News Network" />
+    <meta property="og:locale" content="en" />
+    <meta property="fb:app_id" content="2220391788200892" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="Dxb News Network"/>
+    <meta property="og:image:type" content="image/png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="author" content="Official Correspondence">
+    <meta name="robots" content="index, follow, noarchive, max-image-preview:large"/>
+    <meta name="google-adsense-account" content="ca-pub-5922835412614482">
+  {% if indseo == 'ndetail' %}
+  <title>{{Blogdetails.post_title}}</title>
+    <meta property="og:title" content="{{Blogdetails.post_title}}"/>
+    <meta property="twitter:title" content="{{Blogdetails.post_title}}"/>
+    <meta name="description" content="{{Blogdetails.post_short_des }} DXB News Network"/>
+    <meta property="og:description" content="{{Blogdetails.post_short_des }} DXB News Network"/>
+    <meta property="twitter:description" content="{{Blogdetails.post_short_des }} DXB News Network"/>
+    <meta name="news_keywords" content="DXB News Network, breaking news, {{Blogdetails.post_title}}"/>
+    <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}"/>
+    <meta name="twitter:url" content="https://www.dxbnewsnetwork.com{{ request.path }}"/>
+
+    <meta property="og:image" content="https://www.dxbnewsnetwork.com/upload/{{Blogdetails.post_image}}"/>
+    <meta name="twitter:image" content="https://www.dxbnewsnetwork.com/upload/{{Blogdetails.post_image}}"/>
+    <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  {% elif indseo == 'video' %}
+    <title>{{Vnews.video_title}}</title>
+    <meta property="og:title" content="{{Vnews.video_title}}"/>
+    <meta property="twitter:title" content="{{Vnews.video_title}}"/>
+    <meta name="description" content="{{Vnews.video_short_des}}"/>
+    <meta property="og:description" content="{{Vnews.video_short_des}}"/>
+    <meta property="twitter:description" content="{{Vnews.video_short_des}}"/>
+    <meta name="news_keywords" content="DXB News Network, breaking news, {{Vnews.video_title}}"/>
+    <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}"/>
+    <meta name="twitter:url" content="https://www.dxbnewsnetwork.com{{ request.path }}"/>
+
+    <meta property="og:image" content="https://img.youtube.com/vi/{{Vnews.video_url}}/mqdefault.jpg"/>
+    <meta name="twitter:image" content="https://img.youtube.com/vi/{{Vnews.video_url}}/mqdefault.jpg"/>
+    <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
+    {% elif indseo == 'voicesofuae' %}
+    <title>inspiring achievements of individuals from diverse fields and backgrounds in the UAE</title>
+  <meta property="og:title" content="inspiring achievements of individuals from diverse fields and backgrounds in the UAE"/>
+  <meta property="twitter:title" content="inspiring achievements of individuals from diverse fields and backgrounds in the UAE"/>
+  <meta name="description" content="Celebrating Achievers Across Fields
+The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE."/>
+  <meta property="og:description" content="Celebrating Achievers Across Fields
+The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE."/>
+  <meta property="twitter:description" content="Celebrating Achievers Across Fields
+The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE."/>
+  <meta name="news_keywords" content="Celebrating Achievers Across Fields
+The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE."/>
+
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}"/>
+  <meta name="twitter:url" content="https://twitter.com/dxbnewsnetwork"/>
+  <meta property="og:image" content="https://www.dxbnewsnetwork.com/static/assets/img/voice-of-uae-og.jpg"/>
+  <meta name="twitter:image" content="https://www.dxbnewsnetwork.com/static/assets/img/voice-of-uae-og.jpg"/>
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  {% else %}
+  
+  <title>{{indseo.metatitle}}</title>
+  <meta property="og:title" content="{{indseo.metatitle}}"/>
+  <meta property="twitter:title" content="{{indseo.metatitle}}"/>
+  <meta name="description" content="{{indseo.metadescription}}"/>
+  <meta property="og:description" content="{{indseo.metadescription}}"/>
+  <meta property="twitter:description" content="{{indseo.metadescription}}"/>
+  <meta name="news_keywords" content="{{indseo.metakeyword}}"/>
+
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}"/>
+  <meta name="twitter:url" content="https://twitter.com/dxbnewsnetwork"/>
+  <meta property="og:image" content="https://www.dxbnewsnetwork.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg"/>
+  <meta name="twitter:image" content="https://www.dxbnewsnetwork.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg"/>
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
+
+  {% endif %}
+  
+
+  <!-- Favicon-->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">  
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+  <!-- Libraries Stylesheet -->
+  <link href="{% static 'assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  {% if request.user.id %}
+    <link href="{% static 'assets/dist/css/AdminLTE.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/dist/css/AdminLTE.min.css' %}" rel="stylesheet">
+  {% endif %}
+  <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+  <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+    <style>
+          @media (min-width: 1200px) {
+            body {
+                {% for festad in bgad %}
+                background-image: url('../upload/{{festad.ad_image}}');
+                {% endfor %}
+                background-attachment: fixed; /* or scroll or local */
+                background-attachment:no-repeat;
+                object-fit: cover;
+              }
+          }
+          
+          @media (min-width: 992px) {
+            body {
+                
+              }
+            }
+    </style>
+
+    <meta name="google-site-verification" content="b9AgCekDpKNwcfl2DFgOyqMtXk6PIwJ80ozmaG0vQI0" />
+    
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-K8VNS7F5');</script>
+  <!-- End Google Tag Manager -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8VNS7F5"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+    {% comment %} --------articale-start------ {% endcomment %}
+    {% include "articale.html" %} 
+{% comment %} --------articale--end----- {% endcomment %}
+    <!-- Contact Start -->
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="section-title mb-0v mt-3">
+                        <h4 class="m-0 text-uppercase font-weight-bold">Contact Us For Any Queries</h4>
+                    </div>
+                    <div class="bg-white p-4 mb-3">
+                        <div class="mb-4">
+                            <h6 class="text-uppercase font-weight-bold">Contact Info</h6>
+                            <p class="mb-4">We believe in the power of news to connect and empower people. DNN aspires to be more than just a news outlet, we aim to be a community hub where diverse perspectives are welcomed and constructive conversations are fostered. </p>
+							<div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa fa-map-marker-alt text-primary mr-2"></i>
+                                    <h6 class="font-weight-bold mb-0">Our Office</h6>
+                                </div>
+                                <p class="m-0">3001E, 30 Floor, Aspin Commercial Tower, Sheikh Zayed Road, Dubai, UAE</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa fa-envelope-open text-primary mr-2"></i>
+                                    <h6 class="font-weight-bold mb-0">Email Us</h6>
+                                </div>
+                                <p class="m-0">info@dxbnewsnetwork.com</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa fa-phone-alt text-primary mr-2"></i>
+                                    <h6 class="font-weight-bold mb-0">Call Us</h6>
+                                </div>
+                                <p class="m-0">+971 52 602 2429</p>
+                            </div>
+                        </div>
+                        <h6 class="text-uppercase font-weight-bold mb-3">Contact Us</h6>
+                        <form>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control p-4" placeholder="Your Name" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control p-4" placeholder="Your Email" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control p-4" placeholder="Subject" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="4" placeholder="Message" required="required"></textarea>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary font-weight-semi-bold px-4" style="height: 50px;"
+                                    type="submit">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="section-title mb-0 mt-3">
+                        <h4 class="m-0 text-uppercase font-weight-bold"><i class="fa fa-map-marker-alt text-primary mr-2"></i> Location</h4>
+                    </div>
+                    <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3609.8239453233527!2d55.27002491028113!3d25.209159031124315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s3001E%2C%2030%20Floor%2C%20Aspin%20Commercial%20Tower%2C%20Sheikh%20Zayed%20Road%2C%20Dubai%2C%20UAE!5e0!3m2!1sen!2sin!4v1702925205500!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <!-- Social Follow Start -->
+                    <div class="mb-3">
+                    
+                        <div class="bg-white text-center border border-top-0">
+                            {% for adrcol in adright %}
+                            <a href="{{adrcol.ad_url}}"  target="_blank"><img class="img-fluid w-100" src="../upload/{{adrcol.ad_image}}" alt="{{adrcol.ad_url}}"></a>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    <!-- Social Follow End -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+    {% endblock %}  
