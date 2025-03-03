@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'Seo_management',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'generalist',
     #'django_crontab',
     #'embed_video',
 ]

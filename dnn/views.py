@@ -902,7 +902,7 @@ def Userregistration(request):
             'bnews':brknews,
             'vidnews':podcast,
         }
-    return render(request,'inn/registration.html',data)
+    return render(request,'inn/registrations.html',data)
 
 def Registeration(request):
     if request.method == "POST":
@@ -1999,3 +1999,23 @@ def Adsinquiry(request):
                                                                                  
     return render(request, 'adsinquiry.html', data)
     
+
+
+from django.http import HttpResponse
+
+def robots_txt(request):
+    content = """User-agent: *
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /register/
+Disallow: /profile/
+Disallow: /dashboard/
+Disallow: /private/
+
+Allow: /
+
+Sitemap: https://www.dxbnewsnetwork.com/sitemap
+"""
+    return HttpResponse(content, content_type="text/plain")

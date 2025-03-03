@@ -40,6 +40,7 @@ admin.site.index_title="Dasboard"
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('generalist/', include('generalist.urls')),
     path("send-otp/", views.send_otp, name="send_otp"),
     path("verify-otp/", views.verify_otp, name="verify_otp"),
     path('thanks', views.thanks, name="thanks"),
@@ -61,10 +62,8 @@ urlpatterns = [
     path('voices-of-uae', views.Adsinquiry, name='voices-of-uae'),
     
     #path('sitemap.xml',sitemap,{'sitemaps':sitemaps},name='django.contrib.sitemaps.views.sitemap'),
-    path(
-        "robots.txt",
-        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
-    ),
+    # path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
+    path("robots.txt", views.robots_txt, name="robots_txt"),
     path(
         "ads.txt",
         TemplateView.as_view(template_name="ads.txt", content_type="text/plain"),
