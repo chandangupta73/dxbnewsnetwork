@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="container  m-0 p-0 " style="max-width: 100%;">
-    <button id="theme-toggle" class="theme-button">
+    <button id="theme-toggle" class="theme-button bg-light">
         <!-- <img src="img/theme.png" class="img-fluid w-100" title="" /> -->
         <img src="{% static 'assets/dnn/img/theme.png'%}" class="img-fluid w-100" title="" />
     </button>
@@ -13,7 +13,7 @@
                     <a href="{% url 'contact-us'%}"><i class="bi bi-person-square"></i></a>
                 </li>
                 <li class="top_nav_link">
-                    <a href="{% url 'advertise-with-us' %}"><i class="bi bi-badge-ad-fill"></i></a>
+                    <a href="/advertise_with_us"><i class="bi bi-badge-ad-fill"></i></a>
                 </li>
                 <li class="top_nav_link">
                     <a href="{% url 'registration'%}"><i class="bi bi-pencil"></i></a>
@@ -24,7 +24,7 @@
                         <i class="bi bi-bell"></i>
                     </a>
                 </li>
-
+                {% include 'inn/subscribe_model.html' %}
             </ul>
         </div>
 
@@ -41,12 +41,12 @@
                     <i class="bi bi-calendar2-date mr-2"></i>
                     <span class="calender-text" id="currentDate"></span>
                 </a>
-
+            
             </div>
         </div>
         <div class="col-lg-4 col-md-12 col-sm-12 row-content d-flex align-items-center justify-content-center">
             <div class="text-center mt-2" style="width: 400px;">
-                <a href="/" class="text-center">
+                <a href="#" class="text-center">
                     <img src="{% static 'assets/dnn/img/logo_dxb.png'%}" alt="Light Logo"
                         class="logo logo-light logo img-fluid w-100">
                     <img src="{% static 'assets/dnn/img/footer-logo.png'%}" alt="Dark Logo"
@@ -154,25 +154,25 @@
         </div>
     </nav>
 </div>
+</div>
 
-{% include 'inn/subscribe_model.html' %}
 
 <script>
-    window.addEventListener("scroll", function () {
-        var stickyNav = document.getElementById("stickyNav");
-        if (window.pageYOffset > 100) {
-            stickyNav.style.display = "block";
-        } else {
-            stickyNav.style.display = "none";
-        }
-    });
+window.addEventListener("scroll", function() {
+    var stickyNav = document.getElementById("stickyNav");
+    if (window.pageYOffset > 100) {
+        stickyNav.style.display = "block";
+    } else {
+        stickyNav.style.display = "none";
+    }
+});
 
-    const getFormattedDate = () => {
-        const options = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
-        const today = new Date();
-        return today.toLocaleDateString('en-US', options);
-    };
-    document.getElementById('currentDate').innerText = getFormattedDate();
+const getFormattedDate = () => {
+    const options = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
+    const today = new Date();
+    return today.toLocaleDateString('en-US', options);
+};
+document.getElementById('currentDate').innerText = getFormattedDate();
 </script>
 
 
@@ -184,18 +184,15 @@
         z-index: 9999;
         background: #4891cd;
         width: 100%;
-    }
-
-    .top-nav {
+        }
+    .top-nav{
         margin: 0px 0px 0px 5px;
     }
-
     .top_nav_link {
         border-right: 1px solid #ddd;
         padding: 0px 10px;
         font-size: 19px;
     }
-
     .header a {
         font-size: 16px;
         font-weight: bold;
@@ -209,73 +206,59 @@
     .header i {
         font-size: 25px;
     }
-
-    .nav-border {
+    .nav-border{
         background: #4891cd;
     }
-
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-left: 0px !important;
         color: #fff !important;
     }
-
     .dropdown-menu {
         background-color: #4891cd !important;
     }
-
     .dropdown-item {
         background-color: #4891cd !important;
         color: #ffffff !important;
         min-width: 20rem;
     }
-
-    .dropdown-item:focus,
-    .dropdown-item:hover {
+    .dropdown-item:focus, .dropdown-item:hover {
         background-color: #4891cd !important;
         color: #ffffff !important;
     }
-
-    @media (min-width:280px) and (max-width:667px) {
+    @media (min-width:280px) and (max-width:667px){
         .header i {
             font-size: 12px;
-        }
-
+          }
         .header a {
             font-size: 9px;
-
-        }
-
-        .header p {
+            
+          }
+          .header p {
             font-size: 12px;
             font-weight: normal;
-        }
-
-        .modal-content {
+          }
+          .modal-content{
             max-width: 340px;
-        }
+          }
     }
-
     @media (min-width: 767px) and (max-width: 992px) {
         .navbar {
             padding: 10px !important;
             background: #4891cd;
         }
     }
-
     @media (min-width: 280px) and (max-width: 667px) {
         .navbar {
             padding: 10px !important;
             background: #4891cd;
         }
     }
-
-    @media (min-width:768px) and (max-width:1024px) {
-        .top_search_section {
+    @media (min-width:768px) and (max-width:1024px){
+        .top_search_section{
             justify-content: space-between !important;
         }
-
-        .calender {
+        .calender{
             justify-content: space-between !important;
         }
-    }
+   }
 </style>
